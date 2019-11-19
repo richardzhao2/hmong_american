@@ -27,10 +27,6 @@
     {
       "name": "Earn Postgrad Degree",
       "id": 6
-    },
-    {
-      "name": "No emergency",
-      "id": 7
     }
   ],
   "links": [
@@ -69,12 +65,6 @@
       "target": 6,
       "value": 0.038592,
       "label": 0.16
-    },
-    {
-      "source": 5,
-      "target": 7,
-      "value": 0.20260799999999998,
-      "label": 0.84
     }
   ]
 }
