@@ -15,6 +15,10 @@
     stopped short by painful memories, choked by tears and grief.
   </p>
 
+  <p style="color:rgb(100, 107, 107); font-size:15px;" ;>
+    background information on the hmong. highlight rich history of the culture
+  </p>
+
   <div id='choropeth'></div>
 
   <p style="color:rgb(100, 107, 107); font-size:15px;">
@@ -121,14 +125,121 @@
       life of a Hmong-American
     </p>
   </div>
+  <br>
+  <br>
+  <section id='scroll'>
+    <!--  step/text container  -->
+    <div class='scroll__text'>
+      <div class='step' data-step='1' style='height: 500px;'>
+        <p>The jist of this problem is basically given some target number and an unsorted array of numbers, find the
+          pair of numbers that sum up to our
+          target.
+        </p>
+        <p>
+          For the sake of brevity, I'm not going to consider the sorted case and the 2-pointers method: I'll save that
+          for when I make a post on 3-Sum. If that made no sense, don't worry about it for now.
+        </p>
+      </div>
+      <div class='step' data-step='2' style='height: 500px;'>
+        <p>
+          Let's consider the array <b>[4,3,5,12,7,1,9]</b>.
+        </p>
+        <p>
+          For small arrays/small numbers, it's generally pretty easy to find the answer for any target.
+        </p>
+        <p>
+          For example, if our target was 19, it's pretty obvious which 2 numbers sum to 19, that being 12 and 7.
+        </p>
+        <p>
+          Thus, our solution for this would be <b>[3,4]</b> (representing the indicies of our solutions).
+        </p>
+      </div>
+      <div class='step' data-step='3' style='height: 500px;'>
+        <p>The naive solution should be quite easy to understand: simply try out every possible pair of numbers until
+          we get our target.
+        </p>
+        <p>
+          One implementation of this idea would be to start with 4, then check 3, 5, 12, 7, 1, 9, and then iterate to 3,
+          and check 5, 12, 7, 1, 9, then to 5 and check 12, 7, 1, 9, and so on.
+        </p>
+
+      </div>
+      <div class='step' data-step='4'>
+        <p>
+          Let's start with our first element '4' and ask ourselves what implications would there be is 4 was a solution.
+          If 4 was part of the solution pair, then it would mean that there must exist 15 somewhere
+        </p>
+      </div>
+      <div class='step' data-step='5' style='height: 500px;'>
+        <p>
+          Instead of checking every combination, it's enough to check if the array contains an element and its
+          complement. That is, everytime we iterate through
+          the array and consider some element, we only need to check if the complement also exists.
+        </p>
+      </div>
+      <div class='step' data-step='6' style='height: 380px;'>
+        <p>
+          Going back to our example, when we consider the element '3', we only have to see if its complement (16) exists
+          in the array. It doesn't,
+          so it obviously can't be part of the solution. However, once we reach the element '7,' we check to see if its
+          complement (12) exists. It does,
+          so 12 and 7 must be our solution.
+        </p>
+      </div>
+      <div class='step' data-step='7'>
+        <p>We introduce a hash table to keep track of what elements we have seen (and thus know to exist). Since at the
+          start we haven't seen any numbers,
+          the hash table is blank, and we assume nothing about the existence of a element's complement.
+        </p>
+      </div>
+      <div class='step' data-step='8'>
+        <p>Start with our first element 4 -- 4's complement (15) is not in our hashtable (so for now we assume it
+          doesn't exist), so we don't have our solution.
+          We have now seen the #4 and need to record that, so we insert it into our hash table.</p>
+      </div>
+      <div class='step' data-step='9'>
+        <p>Now we go to 3 -- again, 3's complement (16) is not in our hashtable. we have now seen 3 and record that, so
+          we insert it into our hash table.</p>
+      </div>
+      <div class='step' data-step='10'>
+        <p>Now we go to 5 -- it's complement is 14 and isn't in the hashtable. We record 5 and keep going.</p>
+      </div>
+      <div class='step' data-step='11'>
+        <p>We go to 12 -- 12's complement is 7 and 7 isn't in our hashtable. Remember, even though we personally know 7
+          is in our array,
+          the computer hasn't seen it yet (so to the computer, it doesn't exist yet). We don't have a solution yet,
+          so we record it in our hashtable and keep going.</p>
+      </div>
+      <div class='step' data-step='12' style='height: 380px;'>
+        <p>We go to 7. 7's complement is 12, and we (and the computer) have seen 12 before (it's in our hashtable).
+          Because of this, we now have our solution and we didn't have to check every combination.
+          We now know the solution are the array indicies of 7 and 12.
+        </p>
+      </div>
+    </div>
+
+    <!--  graphic container  -->
+    <div class='scroll__graphic'>
+      <!--  actual graphic/chart   -->
+
+      <div class='chart'>
+      </div>
+    </div>
+
+
+  </section>
+
 
 </body>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src='d3-sankey.js' charset='utf-8' type='text/javascript'></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
+<script src='https://unpkg.com/intersection-observer@0.5.0/intersection-observer.js'></script>
+<script src='scrollama.min.js'></script>
 <script src="script.js"></script>
 <script src='sankeyscript.js'></script>
 <script src='choropeth.js'></script>
+<script src='scroller.js'></script>
 
 
 </html>
