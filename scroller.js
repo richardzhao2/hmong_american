@@ -116,20 +116,6 @@ var hashText = svg.selectAll('text.hashlabels')
     .attr('y', 100)
     .attr('opacity', 0.5);
 
-var targetLabel = svg.selectAll('text.target')
-    .data(dict[0])
-    .enter()
-    .append('text')
-    .attr('class', 'target')
-    .text('Target: 19')
-    .attr('text-anchor', 'middle')
-    .attr('fill', 'black')
-    .attr('x', 50)
-    .attr('y', 30)
-    .attr('opacity', 0.1);
-
-
-
 
 // resize function to set dimensions on load and on page resize
 function handleResize() {
@@ -182,26 +168,14 @@ function handleStepEnter(response) {
             return curCoordinates[i];
         });
 
-    if (response.index >= 1) {
-        d3.selectAll('text.target')
-            .transition().duration(500)
-            .attr('opacity', 0.4);
-    }
-
-    else {
-        d3.selectAll('text.target')
-            .transition().duration(500)
-            .attr('opacity', 0);
-    }
-
     if (response.index == 1) {
 
     } else if (response.index == 2) {
         var squareElements = d3.selectAll('.square').nodes();
-        for (i = 0; i < 63; i++) {
+        for (i = 0; i < 350; i++) {
             d3.select(squareElements[i])
                 .transition()
-                .delay(function(d) { return 20 * i+1 })
+                .delay(function(d) { return 300 * Math.pow(i+1, 0.35) })
                 .duration(500)
                 .style('fill', 'yellow')
         }
@@ -210,8 +184,8 @@ function handleStepEnter(response) {
 
     else if (response.index == 3) {
         var squareElements = d3.selectAll('.square').nodes();
-        for (i = 0; i < 150-63; i++) {
-            index = i + 63
+        for (i = 0; i < 400-350; i++) {
+            index = i + 350;
             d3.select(squareElements[index])
                 .transition()
                 .delay(function(d) { return 20 * i+1 })
