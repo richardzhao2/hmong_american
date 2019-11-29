@@ -3,6 +3,8 @@ var margin = { top: 10, right: 30, bottom: 90, left: 40 },
   width = 750 - margin.left - margin.right,
   height = 450 - margin.top - margin.bottom;
 
+
+
 // append the salary_svg object to the body of the page
 var salary_svg = d3.select("#bargraphssalaries")
   .append("svg")
@@ -44,7 +46,6 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/hou
     .style("text-decoration", "underline")
     .text("Salaries of Different Ethnic Groups (2017)");
 
-
   // Bars
   var bars = salary_svg.selectAll("mybar")
     .data(data)
@@ -73,6 +74,15 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/hou
     .attr("y", function (d) { return y(d.Salary); })
     .attr("height", function (d) { return height - y(d.Salary); })
 
+  // tooltip helper
+  var helper = salary_svg.append("text")
+    .attr("x", width / 1.5)
+    .attr("y", y(57617))
+    .attr("text-anchor", "middle")
+    .style("opacity", 1)
+    .style("font-size", "18px")
+    .text("Click on the graph to show your guess");
+
   // Allowing User Input
   d3.select("#bargraphssalaries").on("click", function () {
     var coords = d3.mouse(this);
@@ -86,6 +96,8 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/hou
       .transition()
       .duration(1000)
       .style("opacity", .1);
+
+    helper.style("opacity", 0)
   });
 
   // Show me button
@@ -104,6 +116,8 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/hou
         .transition()
         .duration(1000)
         .style("opacity", 1);
+
+      helper.style("opacity", 0)
     });
 
   // Default colors
@@ -112,6 +126,8 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/hou
 
   d3.select(bars._groups[0][6])
     .attr('fill', function (d) { return '#d2b48c' });
+
+
 })
 
 // append the svg object to the body of the page
@@ -183,6 +199,15 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/pov
     .attr("y", function (d) { return y(d.Percent); })
     .attr("height", function (d) { return height - y(d.Percent); })
 
+  // tooltip helper
+  var helper = poverty_svg.append("text")
+    .attr("x", width / 1.5)
+    .attr("y", y(11.8))
+    .attr("text-anchor", "middle")
+    .style("opacity", 1)
+    .style("font-size", "18px")
+    .text("Click on the graph to show your guess");
+
   // User Input
   d3.select("#bargraphpoverty").on("click", function () {
     var coords = d3.mouse(this);
@@ -196,6 +221,7 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/pov
       .transition()
       .duration(1000)
       .style("opacity", .1);
+    helper.style("opacity", 0);
   });
 
   // Show me button
@@ -214,6 +240,8 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/pov
         .transition()
         .duration(1000)
         .style("opacity", 1);
+
+      helper.style("opacity", 0);
     });
 
   // Default colors
@@ -293,6 +321,15 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/edu
     .attr("y", function (d) { return y(d.Percent); })
     .attr("height", function (d) { return height - y(d.Percent); })
 
+  // tooltip helper
+  var helper = education_svg.append("text")
+    .attr("x", width / 1.5)
+    .attr("y", y(31))
+    .attr("text-anchor", "middle")
+    .style("opacity", 1)
+    .style("font-size", "18px")
+    .text("Click on the graph to show your guess");
+
   // User Input
   d3.select("#bargrapheducation").on("click", function () {
     var coords = d3.mouse(this);
@@ -306,6 +343,8 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/edu
       .transition()
       .duration(1000)
       .style("opacity", .1);
+
+    helper.style("opacity", 0);
   });
 
   // Show me button
@@ -324,6 +363,8 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/edu
         .transition()
         .duration(1000)
         .style("opacity", 1);
+
+      helper.style("opacity", 0)
     });
 
   // Default colors
@@ -404,6 +445,15 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/une
     .attr("y", function (d) { return y(d.Percent); })
     .attr("height", function (d) { return height - y(d.Percent); })
 
+  // tooltip helper
+  var helper = unemployment_svg.append("text")
+    .attr("x", width / 1.5)
+    .attr("y", y(4.9))
+    .attr("text-anchor", "middle")
+    .style("opacity", 1)
+    .style("font-size", "18px")
+    .text("Click on the graph to show your guess");
+
   // User Input
   d3.select("#bargraphunemployment").on("click", function () {
     var coords = d3.mouse(this);
@@ -417,6 +467,8 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/une
       .transition()
       .duration(1000)
       .style("opacity", .1);
+
+    helper.style("opacity", 0);
   });
 
   // Show me button
@@ -435,6 +487,8 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/une
         .transition()
         .duration(1000)
         .style("opacity", 1);
+
+      helper.style("opacity", 0);
     });
 
   // Default colors

@@ -38,6 +38,8 @@ var div = d3.select("#choropeth")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
+var bandaid = false;
+
 // Load in my states data!
 d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/population.csv", function (data) {
     // Load GeoJSON data and merge with states data
@@ -78,7 +80,58 @@ d3.csv("https://raw.githubusercontent.com/richardzhao2/hmong_datasets/master/pop
                     .style("opacity", 0);
             });
 
+        if (bandaid == false) {
+            // add a legend
+            var w = 140, h = 200;
 
+            choropeth_svg.append("text")
+                .attr("x", (w / 2))
+                .attr("y", (0))
+                .attr("text-anchor", "middle")
+                .style("font-size", "14px")
+                .text("Population")
+                .attr("transform", "translate(-37,80)");
+
+            var legend = choropeth_svg.append("defs")
+                .append("svg:linearGradient")
+                .attr("id", "gradient")
+                .attr("x1", "100%")
+                .attr("y1", "0%")
+                .attr("x2", "100%")
+                .attr("y2", "100%")
+                .attr("spreadMethod", "pad");
+
+            legend.append("stop")
+                .attr("offset", "0%")
+                .attr("stop-color", "darkred")
+                .attr("stop-opacity", 1);
+
+            legend.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#89afcf")
+                .attr("stop-opacity", 1);
+
+            choropeth_svg.append("rect")
+                .attr("width", w - 100)
+                .attr("height", h)
+                .style("fill", "url(#gradient)")
+                .attr("transform", "translate(0,100)");
+
+            var y = d3.scaleLinear()
+                .range([h, 0])
+                .domain([0, 91224]);
+
+            var yAxis = d3.axisRight(y);
+
+            choropeth_svg.append("g")
+                .attr("transform", "translate(41,100)")
+                .call(yAxis);
+
+            bandaid = true
+        }
     });
 
+
 });
+
+
