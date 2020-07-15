@@ -12,10 +12,5 @@ scrollama.js
 d3.js
 
 
-project website hosted at:
+post hosted at:
 https://richardzhao2.github.io/posts/hmong/index.html
-
-screencast video hosted at:
-https://www.youtube.com/watch?v=sEBecdN0W54
-
-no peer review as this was a solo project.
